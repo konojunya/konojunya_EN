@@ -1,0 +1,28 @@
+{
+  "appenders": [
+    {
+      "type": "dateFile",
+      "filename": "log/app.log",
+      "pattern": "-yyyy-MM-dd",
+      "maxLogfSize":20480,
+      "backups":10,
+      "category":"app"
+    },
+    {
+      "type": "dateFile",
+      "filename": "log/access.log",
+      "pattern": "-yyyy-MM-dd",
+      "maxLogfSize":20480,
+      "backups":10,
+      "category":"access"
+    },
+    {
+      "type": "dateFile",
+      "filename": "log/error.log",
+      "pattern": "-yyyy-MM-dd",
+      "maxLogfSize":20480,
+      "backups":10,
+      "category":"error"
+    }
+  ]
+}

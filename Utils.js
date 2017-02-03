@@ -3,6 +3,7 @@ var
 	Twitter = require('twitter'),
 	http = require('http'),
 	https = require('https'),
+	logger = require('logger'),
 	qs = require('querystring');
 
 
@@ -55,7 +56,7 @@ Utils.prototype._getMSTranslateAccessToken = function(fn){
       });
   })
   .on('error', function(err){
-      console.log(err);
+  	logger.fatal(err);
   });
 
   req.write(qs.stringify(data));
@@ -101,7 +102,7 @@ Utils.prototype._translate = function(token, text,callback){
 			eval(body);
 		});
 	}).on('error',function(err){
-		console.log(err);
+		logger.fatal(err);
 	});
 
 	req.end();
@@ -148,7 +149,7 @@ Utils.prototype.getStreamingTweet = function(fn){
 				fn(tweet)
 			})
 			stream.on('error', function(error) {
-			  throw error;
+				logger.fatal(err);
 			});
 		}
 	})
@@ -187,7 +188,7 @@ Utils.prototype.postTweet = function(post_text){
 		status: post_text
 	}
 	T.post("statuses/update",opt,function(err,data,res){
-		if(err) throw new Error(err);
+		if(err) logger.fatal(err);
 	})
 }
 

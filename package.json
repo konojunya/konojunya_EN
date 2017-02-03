@@ -19,6 +19,7 @@
   "homepage": "https://github.com/konojunya/konojunya_EN#readme",
   "dependencies": {
     "apiai": "^3.0.3",
+    "log4js": "^1.1.0",
     "twit": "^2.2.5"
   }
 }
