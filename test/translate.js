@@ -4,7 +4,7 @@ const http = require('http');
 const https = require('https');
 const qs = require('querystring');
 
-var input_word = "技術検証全て終わりや。あとは俺のアホなツイートをMSが上手いこと英訳してくれるか。笑"
+var input_word = "ありがとう"
 
 //アクセストーク取得
 function getAccessToken(callback) {
