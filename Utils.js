@@ -3,7 +3,6 @@ var
 	Twitter = require('twitter'),
 	http = require('http'),
 	https = require('https'),
-	logger = require('logger'),
 	qs = require('querystring');
 
 
@@ -56,7 +55,8 @@ Utils.prototype._getMSTranslateAccessToken = function(fn){
       });
   })
   .on('error', function(err){
-  	logger.fatal(err);
+  	// logger.fatal(err);
+  	throw err
   });
 
   req.write(qs.stringify(data));
@@ -102,7 +102,8 @@ Utils.prototype._translate = function(token, text,callback){
 			eval(body);
 		});
 	}).on('error',function(err){
-		logger.fatal(err);
+		// logger.fatal(err);
+		throw err
 	});
 
 	req.end();
@@ -144,13 +145,15 @@ Utils.prototype.getStreamingTweet = function(fn){
 		if(!err){
 			var option = {follow: tweets[0].user.id_str};
 
-			var stream = client.stream("statuses/filter",option)
-			stream.on("data",function(tweet){
-				fn(tweet)
+			client.stream("statuses/filter",option,function(stream){
+				stream.on("data",function(tweet){
+					fn(tweet)
+				})
+				stream.on('error', function(error) {
+					// logger.fatal(err);
+					throw error
+				});
 			})
-			stream.on('error', function(error) {
-				logger.fatal(err);
-			});
 		}
 	})
 
@@ -188,7 +191,28 @@ Utils.prototype.postTweet = function(post_text){
 		status: post_text
 	}
 	T.post("statuses/update",opt,function(err,data,res){
-		if(err) logger.fatal(err);
+		// if(err) logger.fatal(err);
+		throw err
+		console.log(data.text)
+	})
+}
+
+/***
+ *	postTweet
+ *	Post Tweet
+ *
+ *	@params { string } post_text
+ */
+Utils.prototype.postTweetWithMedia = function(post_text,media){
+	var T = this._getTwitterToken()
+	var opt = {
+		status: post_text,
+		media: media
+	}
+	T.post("statuses/update",opt,function(err,data,res){
+		// if(err) logger.fatal(err);
+		throw err
+		console.log(data.text)
 	})
 }
 
