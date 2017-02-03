@@ -11,3 +11,7 @@ func GetApiToken() *anaconda.TwitterApi {
   token := anaconda.NewTwitterApi(Getenv("EN_TWITTER_ACCESS_TOKEN"), Getenv("EN_TWITTER_ACCESS_TOKEN_SECRET"))
   return token
 }
+
+func GetApiaiToken() string {
+	return Getenv("APIAI_BEARER_TOKEN_DEV")
+}
