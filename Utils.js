@@ -156,26 +156,6 @@ Utils.prototype.getStreamingTweet = function(fn){
 			})
 		}
 	})
-
-	// client.stream("user",function(strm_user){
-
-	// 	var BOT_ID = "konojunya_EN"
-
-	// 	strm_user.on("data",function(data){
-	// 		var id = ('user' in data && 'screen_name' in data.user) ? data.user.screen_name : null;
-	// 		var text = ('text' in data) ? data.text.replace(new RegExp('^@' + BOT_ID + ' '), '') : '';
-	// 		var ifMention = ('in_reply_to_user_id' in data) ? (data.in_reply_to_user_id !== null) : false;
-
-	// 		if (!ifMention || id == BOT_ID) return;
-	// 		var msg = '@' + id + ' ' + text;
-	// 		bot.updateStatus(msg , function (data) {
-	// 			console.log(data.text);
-	// 		});
-	// 	})
-	// 	strm_user.on('error', function(error) {
-	// 	  throw error;
-	// 	});
-	// })
 }
 
 
